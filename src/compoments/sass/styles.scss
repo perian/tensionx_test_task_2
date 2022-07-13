@@ -1,0 +1,17 @@
+@use 'normalize';
+@use 'variables' as *;
+
+body {
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: 'Rubik', 'Arial', sans-serif;
+  color: $font-gray-mid;
+
+  background-color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
