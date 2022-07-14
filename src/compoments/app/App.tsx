@@ -16,16 +16,19 @@ function App() {
     <div className="wrapper">
       <header className="page-header">
         <div className="main-nav">
-          <select
-            className="select schools"
-            name="schools"
-            id="schools-select"
-            defaultValue="School 1"
-            aria-readonly
-          >
-            <option value="School 1">School 1</option>
-            <option value="School 2">School 2</option>
-          </select>
+          <div className="main-nav__inner-wrap">
+            <select
+              className="main-nav__schools  select "
+              name="schools"
+              id="schools-select"
+              defaultValue="School 1"
+              aria-readonly
+            >
+              <option value="School 1">School 1</option>
+              <option value="School 2">School 2</option>
+            </select>
+          </div>
+
           <nav className="main-nav__controls">
             <ul className="main-nav__list">
               <li>
@@ -61,9 +64,9 @@ function App() {
             </ul>
           </nav>
 
-          <div className="user">
-            <a className="user__avatar"></a>
-            <span className="user__menu"></span>
+          <div className="main-nav__user">
+            <a className="main-nav__user-avatar" href="#"></a>
+            <span className="main-nav__user-menu"></span>
           </div>
         </div>
 
@@ -150,20 +153,20 @@ function App() {
           </div>
         </section>
 
-        <section className="score-form">
+        <section className="score">
           <div className="score-table">
             <div className="score-table__thead">
               <div className="score-table__tr">
-                <div className="score-table__td-check">
+                <p className="score-table__td-check">
                   <input id="select-all-students" type="checkbox" />
-                </div>
-                <div className="score-table__td-name">Name</div>
-                <div className="score-table__td-id">ID</div>
-                <div className="score-table__td-class">Class</div>
-                <div className="score-table__td-av-score">Av. Score, %</div>
-                <div className="score-table__td-av-speed">Av. Speed</div>
-                <div className="score-table__td-parents">Parents</div>
-                <div className="score-table__td-actions">Actions</div>
+                </p>
+                <p className="score-table__td-name">Name</p>
+                <p className="score-table__td-id">ID</p>
+                <p className="score-table__td-class">Class</p>
+                <p className="score-table__td-av-score">Av. Score, %</p>
+                <p className="score-table__td-av-speed">Av. Speed</p>
+                <p className="score-table__td-parents">Parents</p>
+                <p className="score-table__td-actions">Actions</p>
               </div>
             </div>
             <div className="score-table__body">
@@ -179,10 +182,21 @@ function App() {
                 <div className="score-table__td-av-parents">
                   Antony Kidman, Jesica Alba-Gabriella
                 </div>
-                <div
-                  className="score-table__td-drop-down"
-                  onClick={openInnerTable}
-                ></div>
+                <div className="score-table__td-actions">
+                  <button
+                    className="score-table__button  score-table__button--create"
+                    type="button"
+                  ></button>
+                  <button
+                    className="score-table__button  score-table__button--trending-up"
+                    type="button"
+                  ></button>
+                  <button
+                    className="score-table__button  score-table__button--drop-down"
+                    type="button"
+                    onClick={openInnerTable}
+                  ></button>
+                </div>
               </div>
 
               {isShown && (
@@ -281,48 +295,36 @@ function App() {
                   <div className="results-table">
                     <div className="results-table__thead">
                       <div className="results-table__tr">
-                        <div className="results-table__td-number">#</div>
-                        <div className="results-table__td-test-label">
-                          Test Label
-                        </div>
-                        <div className="results-table__td-score">Score</div>
-                        <div className="results-table__td-speed">Speed</div>
-                        <div className="results-table__td-total-questions">
-                          Total Q-ns
-                        </div>
-                        <div className="results-table__td-exp-speed">
-                          Exp. Speed
-                        </div>
-                        <div className="results-table__td-concept">Concept</div>
-                        <div className="results-table__td-date">Date</div>
-                        <div className="results-table__td-absent">Absent</div>
+                        <p className="results-table__td">#</p>
+                        <p className="results-table__td">Test Label</p>
+                        <p className="results-table__td">Score</p>
+                        <p className="results-table__td">Speed</p>
+                        <p className="results-table__td">Total Q-ns</p>
+                        <p className="results-table__td">Exp. Speed</p>
+                        <p className="results-table__td">Concept</p>
+                        <p className="results-table__td">Date</p>
+                        <p className="results-table__td">Absent</p>
                       </div>
                     </div>
-                    <div className="results-table__body">
+                    <div className="results-table__tbody">
                       <div className="results-table__tr">
-                        <div className="results-table__td-number">1</div>
-                        <div className="results-table__td-test-label">
+                        <p className="results-table__td-number">1</p>
+                        <p className="results-table__td-test-label">
                           Finding Averages 1 to 400
-                        </div>
-                        <div className="results-table__td-score">350</div>
-                        <div className="results-table__td-speed">
-                          1h 12m 41s
-                        </div>
-                        <div className="results-table__td-total-questions">
-                          400
-                        </div>
-                        <div className="results-table__td-exp-speed">
+                        </p>
+                        <p className="results-table__td-score">350</p>
+                        <p className="results-table__td-speed">1h 12m 41s</p>
+                        <p className="results-table__td-total-questions">400</p>
+                        <p className="results-table__td-exp-speed">
                           01h 00m 00s
-                        </div>
-                        <div className="results-table__td-concept">
+                        </p>
+                        <p className="results-table__td-concept">
                           Multiplication
-                        </div>
-                        <div className="results-table__td-date">
-                          APR 30 2021
-                        </div>
+                        </p>
+                        <p className="results-table__td-date">APR 30 2021</p>
                         <div className="results-table__td-absent">
                           <input
-                            className="results-table"
+                            className="results-table__chekbox"
                             type="checkbox"
                           ></input>
                         </div>
@@ -354,8 +356,14 @@ function App() {
             <p className="pagination__text">21-30 of 100</p>
 
             <div className="pagination__pages-controls">
-              <span className="pagination__arrow  pagination__arrow--left"></span>
-              <span className="pagination__arrow  pagination__arrow--right"></span>
+              <button
+                className="pagination__arrow  pagination__arrow--left"
+                type="button"
+              ></button>
+              <button
+                className="pagination__arrow  pagination__arrow--right"
+                type="button"
+              ></button>
             </div>
           </div>
         </section>
