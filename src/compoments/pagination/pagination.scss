@@ -1,0 +1,62 @@
+@use "../../variables.scss" as *;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  height: 56px;
+
+  color: $font-gray-dark;
+
+  gap: 24px;
+
+  &__rows-per-page {
+    display: flex;
+
+    gap: 16px;
+  }
+
+  &__text {
+    margin: 0;
+  }
+
+  &__pages-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 72px;
+  }
+
+  &__arrow {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &--left {
+      background-image: url(../../../public/img/arrow-left.svg);
+      background-position-x: 5px;
+    }
+
+    &--right {
+      background-image: url(../../../public/img/arrow-right.svg);
+    }
+
+    &:hover {
+      background-color: $bg;
+    }
+
+    &:focus {
+      background-color: $bg;
+    }
+
+    &:active {
+      background-color: $bg-table-stroke-mid;
+    }
+  }
+}

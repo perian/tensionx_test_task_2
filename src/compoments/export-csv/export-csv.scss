@@ -1,0 +1,25 @@
+@use '../../variables.scss' as *;
+
+.export-field__wrap {
+  min-width: 25%;
+
+  text-align: center;
+}
+
+.export-field__button {
+  min-width: 98px;
+  padding-right: 0;
+  padding-left: 22px;
+
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 17px;
+  color: $font-new-gray;
+  text-transform: uppercase;
+
+  background-color: transparent;
+  background-image: url(../../../public/img/export-arrow.svg);
+  background-repeat: no-repeat;
+  background-position: 3px 2px;
+  border: none;
+}

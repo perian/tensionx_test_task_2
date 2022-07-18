@@ -1,0 +1,91 @@
+@use "../../variables.scss" as *;
+
+.score {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.score-table {
+  width: 100%;
+
+  &__body {
+    box-shadow: 0 1px 4px 0 #5b5b5b26;
+  }
+
+  &__tr {
+    display: grid;
+    align-items: center;
+    padding-top: 14px;
+    padding-right: 20px;
+    padding-bottom: 14px;
+    padding-left: 20px;
+
+    text-align: left;
+    color: $font-gray-main;
+
+    gap: 24px;
+    grid-template-columns: 16px 1fr 96px 40px 100px 112px 2fr 104px;
+
+    & th {
+      font-weight: 400;
+      color: $font-gray-mid;
+    }
+
+    &:nth-child(2n) {
+      background-color: $bg-table-stroke-mid;
+    }
+
+    &--active {
+      background-color: $bg;
+      border: 1px solid $new-gray;
+      box-shadow: 0 1px 4px rgba(60, 52, 135, 0.15);
+    }
+  }
+
+  &--inner {
+    padding: 0;
+  }
+
+  &__td-check {
+    display: flex;
+  }
+
+  &__td-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    background-color: $bg;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+
+    &--create {
+      background-image: url(../../../public/img/create.svg);
+    }
+
+    &--trending-up {
+      background-image: url(../../../public/img/trending_up.svg);
+    }
+
+    &--drop-down {
+      width: 24px;
+      height: 24px;
+
+      background-color: transparent;
+      background-image: url(../../../public/img/arrow_drop_down.svg);
+    }
+
+    &--drop-up {
+      background-image: url(../../../public/img/arrow_drop_up.svg);
+    }
+  }
+}

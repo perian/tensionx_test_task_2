@@ -1,0 +1,34 @@
+@use "../../variables.scss" as *;
+
+.search-field {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+
+  text-align: center;
+
+  &__input {
+    width: 440px;
+    height: 32px;
+    padding-right: 40px;
+    padding-left: 12px;
+
+    color: $font-dark;
+
+    background-color: $bg;
+    background-image: url(../../../public/img/search.svg);
+    background-repeat: no-repeat;
+    background-position: 98% center;
+    border: none;
+
+    &::placeholder {
+      color: $font-new-gray;
+    }
+
+    &:hover {
+      &::placeholder {
+        color: $font-gray-mid;
+      }
+    }
+  }
+}
