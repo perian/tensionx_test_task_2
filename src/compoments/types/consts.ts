@@ -23,11 +23,3 @@ type Scores = Score[];
 
 export default Scores;
 
-export interface queryParams {
-  data: Scores,
-  page: number,
-  size: number,
-  search: string,
-  sortBy: 'name' | 'class' | 'score' | 'speed',
-  sortDir: -1 | 0 | 1,
-}

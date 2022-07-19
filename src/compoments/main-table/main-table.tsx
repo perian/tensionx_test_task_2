@@ -1,10 +1,25 @@
 import { useState } from 'react';
+import { useAppSelector } from '../hooks';
 import InnerTable from '../inner-table/inner-table';
 import Pagination from '../pagination/pagination';
+import { useFetchDataQuery } from '../services/api';
 import './main-table.scss';
 
 function MainTable() {
   const [isShown, setIsShown] = useState(false);
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+
+  const {} = useAppSelector((state) => state.data);
+
+  const {
+    data: scores,
+    isFetching,
+    isLoading,
+  } = useFetchDataQuery({
+    page,
+    size
+  });
 
   const openInnerTable = () => {
     setIsShown(true);
@@ -13,6 +28,18 @@ function MainTable() {
   const closeInnerTable = () => {
     isShown && setIsShown(false);
   };
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (!scores?.data) {
+    return (
+      <div>
+        Ooops something went wrong, please refresh the page or try later :(
+      </div>
+    );
+  }
 
   return (
     <section className="score">
@@ -65,7 +92,14 @@ function MainTable() {
         </div>
       </div>
 
-      <Pagination />
+      <Pagination
+        size={size}
+        setSize={setSize}
+        page={page}
+        setPage={setPage}
+        totalCount={scores.totalCount}
+        totalPages={scores.totalPages}
+      />
     </section>
   );
 }

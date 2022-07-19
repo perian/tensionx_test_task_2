@@ -1,5 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { queryParams } from '../types/consts';
+import Scores from '../types/consts';
+
+export interface queryParams {
+  data: Scores
+  totalCount: number
+  totalPages: number
+  page: number
+  size: number
+  search: string
+  sortBy: 'name' | 'class' | 'score' | 'speed'
+  sortDir: -1 | 0 | 1
+}
 
 export const apiSlice = createApi({
   reducerPath: 'fetchScoreData',
@@ -8,13 +19,12 @@ export const apiSlice = createApi({
   }),
   endpoints(builder) {
     return {
-      fetchData: builder.query<queryParams, { pageNumber: number, itemsPerPage: number }>({
-        query({ pageNumber = 1, itemsPerPage = 10 }) {
+      fetchData: builder.query<queryParams, { page: number, size: number }>({
+        query({ page = 1, size = 10 }) {
 
-          return `?page=${pageNumber}&size=${itemsPerPage}`
+          return `?page=${page}&size=${size}`
         },
       }),
-
     }
   }
 });
