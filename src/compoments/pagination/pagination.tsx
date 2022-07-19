@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import { useAppSelector } from '../hooks';
-import { useFetchDataQuery } from '../services/api';
-import Scores from '../types/consts';
 import './pagination.scss';
 
 type PaginationProps = {

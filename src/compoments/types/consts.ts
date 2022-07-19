@@ -9,6 +9,8 @@ export type Test = {
   total: number,
 };
 
+export type Tests = Test[];
+
 export type Score = {
   class: string,
   id: number,
@@ -16,7 +18,7 @@ export type Score = {
   parents: string[],
   score: string,
   speed: string,
-  tests: Test,
+  tests: Tests,
 }
 
 type Scores = Score[];

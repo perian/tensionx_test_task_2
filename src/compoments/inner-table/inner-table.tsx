@@ -1,14 +1,24 @@
+import { Tests } from '../types/consts';
+import InnerTableRow from './inner-table-row';
 import './inner-table.scss';
 
-function InnerTable() {
+type InnerTableProps = {
+  tests: Tests;
+  name: string;
+  id: number;
+};
+
+function InnerTable({ tests, id, name }: InnerTableProps) {
+  // const { absent, concept, date, expSpeed, label, score, speed, total, results } = tests;
+  console.log(tests);
   return (
     <section className="results">
       <div className="results__title">
         <p className="results__text">
-          Student: <b>Nicole Kidman</b>
+          Student: <b>{name}</b>
         </p>
         <p className="results__text">
-          Id: <b>7512552212</b>
+          Id: <b>{id}</b>
         </p>
       </div>
 
@@ -80,6 +90,7 @@ function InnerTable() {
             Below 50% accuracy
           </p>
         </div>
+
         <div className="results__score-definition">
           <p className="results__score-title">Speed</p>
           <p className="results__score-text  results__score-text--blue">
@@ -108,22 +119,11 @@ function InnerTable() {
             <p className="results-table__td">Absent</p>
           </div>
         </div>
+
         <div className="results-table__tbody">
-          <div className="results-table__tr">
-            <p className="results-table__td-number">1</p>
-            <p className="results-table__td-test-label">
-              Finding Averages 1 to 400
-            </p>
-            <p className="results-table__td-score">350</p>
-            <p className="results-table__td-speed">1h 12m 41s</p>
-            <p className="results-table__td-total-questions">400</p>
-            <p className="results-table__td-exp-speed">01h 00m 00s</p>
-            <p className="results-table__td-concept">Multiplication</p>
-            <p className="results-table__td-date">APR 30 2021</p>
-            <div className="results-table__td-absent">
-              <input className="results-table__chekbox" type="checkbox"></input>
-            </div>
-          </div>
+          {tests.map((test, index) => (
+            <InnerTableRow key={index} test={test} index={index} />
+          ))}
         </div>
       </div>
 

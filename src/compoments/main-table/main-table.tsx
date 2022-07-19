@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { useAppSelector } from '../hooks';
-import InnerTable from '../inner-table/inner-table';
 import Pagination from '../pagination/pagination';
 import { useFetchDataQuery } from '../services/api';
+import { Score } from '../types/consts';
+import MainTableRow from './main-table-row';
 import './main-table.scss';
 
 function MainTable() {
-  const [isShown, setIsShown] = useState(false);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
 
-  const {} = useAppSelector((state) => state.data);
+  // const {} = useAppSelector((state) => state.data);
 
   const {
     data: scores,
@@ -18,16 +17,8 @@ function MainTable() {
     isLoading,
   } = useFetchDataQuery({
     page,
-    size
+    size,
   });
-
-  const openInnerTable = () => {
-    setIsShown(true);
-  };
-
-  const closeInnerTable = () => {
-    isShown && setIsShown(false);
-  };
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -58,37 +49,11 @@ function MainTable() {
             <p className="score-table__td-actions">Actions</p>
           </div>
         </div>
-        <div className="score-table__body">
-          <div className="score-table__tr" onClick={closeInnerTable}>
-            <div className="score-table__td-check">
-              <input id="student-name" type="checkbox" />
-            </div>
-            <div className="score-table__td-name">Nicole Kidman</div>
-            <div className="score-table__td-id">7512552212</div>
-            <div className="score-table__td-class">1D</div>
-            <div className="score-table__td-av-score">76%</div>
-            <div className="score-table__td-av-speed">Below Expected</div>
-            <div className="score-table__td-av-parents">
-              Antony Kidman, Jesica Alba-Gabriella
-            </div>
-            <div className="score-table__td-actions">
-              <button
-                className="score-table__button  score-table__button--create"
-                type="button"
-              ></button>
-              <button
-                className="score-table__button  score-table__button--trending-up"
-                type="button"
-              ></button>
-              <button
-                className="score-table__button  score-table__button--drop-down"
-                type="button"
-                onClick={openInnerTable}
-              ></button>
-            </div>
-          </div>
 
-          {isShown && <InnerTable />}
+        <div className="score-table__body">
+          {scores.data.map((student, index) => {
+            return <MainTableRow key={index} student={student} />;
+          })}
         </div>
       </div>
 
