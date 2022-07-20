@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InnerTable from '../inner-table/inner-table';
 import { Score } from '../types/consts';
+import { averageScoreColor, averageSpeedTextColor } from '../utils/utils';
 
 type MainTableRowProps = {
   student: Score;
@@ -19,6 +20,12 @@ function MainTableRow({ student }: MainTableRowProps) {
     isShown && setIsShown(false);
   };
 
+  const scoreTextColor = () => {
+    const averageScore = parseInt(score.slice(0, -1));
+
+    return averageScoreColor(averageScore);
+  };
+
   return (
     <React.Fragment>
       <div className="score-table__tr" onClick={closeInnerTable}>
@@ -28,8 +35,10 @@ function MainTableRow({ student }: MainTableRowProps) {
         <div className="score-table__td-name">{name}</div>
         <div className="score-table__td-id">{id}</div>
         <div className="score-table__td-class">{group}</div>
-        <div className="score-table__td-av-score">{score}</div>
-        <div className="score-table__td-av-speed">{speed}</div>
+        <div className={`score-table__td-av-score ${scoreTextColor()}`}>
+          {score}
+        </div>
+        <div className={`score-table__td-av-speed ${averageSpeedTextColor(speed)}`}>{speed}</div>
         <div className="score-table__td-av-parents">{parents.join(', ')}</div>
         <div className="score-table__td-actions">
           <button
@@ -48,7 +57,7 @@ function MainTableRow({ student }: MainTableRowProps) {
         </div>
       </div>
 
-      {isShown && <InnerTable tests={tests} name={name} id={id} />}
+      {isShown && <InnerTable key={id} tests={tests} name={name} id={id} />}
     </React.Fragment>
   );
 }

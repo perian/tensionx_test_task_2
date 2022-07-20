@@ -218,4 +218,22 @@
   &__checkbox {
     margin: 0 auto;
   }
+
+  &__td-score {
+    &--blue {
+      color: $font-blue;
+    }
+
+    &--green {
+      color: $font-green;
+    }
+
+    &--yellow {
+      color: $font-yellow;
+    }
+
+    &--red {
+      color: $font-red;
+    }
+  }
 }

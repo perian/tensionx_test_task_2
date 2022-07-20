@@ -9,8 +9,6 @@ type InnerTableProps = {
 };
 
 function InnerTable({ tests, id, name }: InnerTableProps) {
-  // const { absent, concept, date, expSpeed, label, score, speed, total, results } = tests;
-  console.log(tests);
   return (
     <section className="results">
       <div className="results__title">
@@ -122,7 +120,7 @@ function InnerTable({ tests, id, name }: InnerTableProps) {
 
         <div className="results-table__tbody">
           {tests.map((test, index) => (
-            <InnerTableRow key={index} test={test} index={index} />
+            <InnerTableRow key={index + test.label} test={test} index={index} />
           ))}
         </div>
       </div>

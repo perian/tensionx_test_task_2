@@ -187,3 +187,21 @@
     letter-spacing: 0;
   }
 }
+
+.text-color {
+  &--blue {
+    color: $font-blue;
+  }
+
+  &--green {
+    color: $font-green;
+  }
+
+  &--yellow {
+    color: $font-yellow;
+  }
+
+  &--red {
+    color: $font-red;
+  }
+}

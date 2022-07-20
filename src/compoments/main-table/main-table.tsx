@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Pagination from '../pagination/pagination';
 import { useFetchDataQuery } from '../services/api';
-import { Score } from '../types/consts';
 import MainTableRow from './main-table-row';
 import './main-table.scss';
 
@@ -9,11 +8,8 @@ function MainTable() {
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
 
-  // const {} = useAppSelector((state) => state.data);
-
   const {
     data: scores,
-    isFetching,
     isLoading,
   } = useFetchDataQuery({
     page,
@@ -51,8 +47,8 @@ function MainTable() {
         </div>
 
         <div className="score-table__body">
-          {scores.data.map((student, index) => {
-            return <MainTableRow key={index} student={student} />;
+          {scores.data.map((student) => {
+            return <MainTableRow key={student.id} student={student} />;
           })}
         </div>
       </div>
