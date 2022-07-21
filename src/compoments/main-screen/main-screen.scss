@@ -35,17 +35,22 @@
   padding-right: 0;
   padding-bottom: 14px;
   padding-left: 0;
+  gap:15px;
 
   text-transform: uppercase;
 
   &__inner-wrap {
     display: flex;
     justify-content: end;
-    width: 297px;
+    width: 22.5%;
   }
 
   &__schools {
     width: 116px;
+  }
+
+  &__controls {
+    width: 51%;
   }
 
   &__list {
@@ -86,7 +91,7 @@
   &__user {
     display: flex;
     justify-content: end;
-    width: 297px;
+    width: 19%;
   }
 
   &__user-avatar {

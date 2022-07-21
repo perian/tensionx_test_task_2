@@ -172,7 +172,7 @@
 
   &__thead {
     .results-table__tr {
-      height: 20px;
+      min-height: 20px;
       padding-top: 0;
       padding-bottom: 0;
 
@@ -199,8 +199,12 @@
     text-align: left;
     column-gap: 12px;
 
-    grid-template-columns: 22px 300px 48px 113px 68px 119px 152px 112px 48px;
+    grid-template-columns: 22px 3fr 1fr 2fr 1fr 2fr 2fr 2fr 1fr;
     row-gap: 6px;
+
+    &--disabled p:not(:first-child) {
+      color: $new-gray;
+    }
 
     & p {
       margin: 0;
@@ -215,25 +219,26 @@
     padding-left: 7px;
   }
 
-  &__checkbox {
-    margin: 0 auto;
+  &__td-checkbox-input:checked + &__td-checkbox-label {
+    background-color: $bg-dark;
+    background-image: url(../../../public/img/checkbox-arrow.svg);
+    background-position: center;
+    border-color: $bg-dark;
   }
 
-  &__td-score {
-    &--blue {
-      color: $font-blue;
-    }
+  &__td-checkbox-label {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 15px;
+    height: 15px;
 
-    &--green {
-      color: $font-green;
-    }
+    border: 2px solid $bg-gray-mid;
+    border-radius: 2px;
+  }
 
-    &--yellow {
-      color: $font-yellow;
-    }
-
-    &--red {
-      color: $font-red;
-    }
+  &__checkbox {
+    display: none;
+    margin: 0 auto;
   }
 }
