@@ -1,0 +1,267 @@
+@use '../../variables.scss' as *;
+
+.results {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-right: 198px;
+  padding-bottom: 20px;
+  padding-left: 60px;
+
+  background-color: $bg;
+
+  gap: 12px;
+
+  &__title {
+    display: flex;
+
+    text-transform: uppercase;
+
+    gap: 15px;
+  }
+
+  &__text {
+    margin: 0;
+  }
+
+  & b {
+    color: $font-gray-dark;
+  }
+
+  &__selectors-wrap {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  &__selectors {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 16px;
+  }
+
+  &__selector {
+    padding-top: 6px;
+    padding-right: 12px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+
+    font-weight: 700;
+    color: $font-gray-dark;
+    text-transform: uppercase;
+
+    background-color: $bg-white;
+    border-color: $new-gray;
+    border-radius: 0;
+
+    &--filter {
+      width: 115px;
+
+      color: $font-white;
+
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  &__date-input {
+    width: 200px;
+    height: 100%;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid gray;
+  }
+
+  &__reset {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    background-color: transparent;
+    background-image: url(../../../public/img/reset.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+  }
+
+  &__devider {
+    display: block;
+    height: 1px;
+    margin: 0;
+
+    background-color: $bg-accent;
+  }
+
+  &__score-definition {
+    display: flex;
+    align-items: center;
+
+    font-size: 12px;
+    line-height: 17px;
+    text-transform: uppercase;
+
+    gap: 25px;
+  }
+
+  &__score-title {
+    margin: 0;
+  }
+
+  &__score-text {
+    position: relative;
+
+    margin: 0;
+    padding-left: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 0;
+
+      display: block;
+      width: 12px;
+      height: 12px;
+
+      background-color: black;
+      border-radius: 50%;
+    }
+
+    &--blue {
+      color: $font-blue;
+
+      &::before {
+        background-color: $font-blue;
+      }
+    }
+
+    &--green {
+      color: $font-green;
+
+      &::before {
+        background-color: $font-green;
+      }
+    }
+
+    &--yellow {
+      color: $font-yellow;
+
+      &::before {
+        background-color: $font-yellow;
+      }
+    }
+
+    &--red {
+      color: $font-red;
+
+      &::before {
+        background-color: $font-red;
+      }
+    }
+  }
+
+  &__average {
+    display: flex;
+    gap: 12px;
+    text-transform: uppercase;
+    align-items: center;
+    font-weight: 700;
+    padding-left: 34px;
+
+    &-title {
+      width: 300px;
+    }
+
+    &-score {
+      color: $font-blue;
+      width: 78px;
+    }
+    
+    &-speed {
+      color: $font-blue;
+      width: 87px;
+    }
+  }
+}
+
+.results-table {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  &__thead {
+    .results-table__tr {
+      min-height: 20px;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &__tbody {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  &__tr {
+    display: grid;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    font-size: 16px;
+    line-height: 22px;
+    text-align: left;
+    column-gap: 12px;
+
+    grid-template-columns: 22px 3fr 1fr 2fr 1fr 2fr 2fr 2fr 1fr;
+    row-gap: 6px;
+
+    &--disabled p:not(:first-child) {
+      color: $new-gray;
+    }
+
+    & p {
+      margin: 0;
+    }
+  }
+
+  &__td-absent {
+    text-align: center;
+  }
+
+  &__td-test-label {
+    padding-left: 7px;
+  }
+
+  &__td-checkbox-input:checked + &__td-checkbox-label {
+    background-color: $bg-dark;
+    background-image: url(../../../public/img/checkbox-arrow.svg);
+    background-position: center;
+    border-color: $bg-dark;
+  }
+
+  &__td-checkbox-label {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 15px;
+    height: 15px;
+
+    border: 2px solid $bg-gray-mid;
+    border-radius: 2px;
+  }
+
+  &__checkbox {
+    display: none;
+    margin: 0 auto;
+  }
+}
