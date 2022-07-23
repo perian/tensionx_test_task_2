@@ -1,9 +1,30 @@
 import ExportCSV from '../export-csv/export-csv';
+import { useAppSelector } from '../hooks';
 import MainTable from '../main-table/main-table';
 import Search from '../search/search';
-import "./main-screen.scss"
+import { useFetchDataQuery } from '../services/api';
+import './main-screen.scss';
 
 function MainScreen() {
+  const size = useAppSelector((state) => state.data.size);
+  const page = useAppSelector((state) => state.data.page);
+  const { data: scores, isLoading } = useFetchDataQuery({
+    page,
+    size,
+  });
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (!scores?.data) {
+    return (
+      <div>
+        Ooops something went wrong, please refresh the page or try later :(
+      </div>
+    );
+  }
+
   return (
     <div className="wrapper">
       <header className="page-header">
@@ -141,7 +162,7 @@ function MainScreen() {
           <ExportCSV />
         </section>
 
-        <MainTable />
+        <MainTable scores={scores.data}/>
       </main>
     </div>
   );

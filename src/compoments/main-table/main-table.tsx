@@ -1,33 +1,13 @@
-import { useState } from 'react';
 import Pagination from '../pagination/pagination';
-import { useFetchDataQuery } from '../services/api';
+import Scores from '../types/consts';
 import MainTableRow from './main-table-row';
 import './main-table.scss';
 
-function MainTable() {
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+type MainTableProps = {
+  scores: Scores;
+}
 
-  const {
-    data: scores,
-    isLoading,
-  } = useFetchDataQuery({
-    page,
-    size,
-  });
-
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
-
-  if (!scores?.data) {
-    return (
-      <div>
-        Ooops something went wrong, please refresh the page or try later :(
-      </div>
-    );
-  }
-
+function MainTable({scores}: MainTableProps) {
   return (
     <section className="score">
       <div className="score-table">
@@ -47,20 +27,13 @@ function MainTable() {
         </div>
 
         <div className="score-table__body">
-          {scores.data.map((student) => {
+          {scores.map((student) => {
             return <MainTableRow key={student.id} student={student} />;
           })}
         </div>
       </div>
 
-      <Pagination
-        size={size}
-        setSize={setSize}
-        page={page}
-        setPage={setPage}
-        totalCount={scores.totalCount}
-        totalPages={scores.totalPages}
-      />
+      <Pagination />
     </section>
   );
 }
