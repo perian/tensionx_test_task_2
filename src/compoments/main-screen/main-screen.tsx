@@ -25,6 +25,33 @@ function MainScreen() {
     );
   }
 
+  const collectCheckedStudents = () => {
+    const checkBoxes = document.querySelectorAll(
+      '.score-table__td-checkbox-input:checked'
+    );
+
+    let checkedStudentsIds = [];
+    for (let checkBox of checkBoxes) {
+      checkedStudentsIds.push(parseInt(checkBox.id));
+    }
+
+    return checkedStudentsIds;
+  };
+
+  const getCheckedStudentsData = () => {
+    const checkedStudentsIds = collectCheckedStudents();
+
+    const checkedStudentsData = [...scores.data].filter((student) => {
+      for (let id of checkedStudentsIds) {
+        if (student.id === id) {
+          return student;
+        }
+      }
+    });
+    console.log(checkedStudentsData)
+    return checkedStudentsData;
+  };
+
   return (
     <div className="wrapper">
       <header className="page-header">
@@ -159,7 +186,7 @@ function MainScreen() {
 
           <Search />
 
-          <ExportCSV />
+          <ExportCSV getCheckedStudentsData={getCheckedStudentsData} />
         </section>
 
         <MainTable scores={scores.data}/>
