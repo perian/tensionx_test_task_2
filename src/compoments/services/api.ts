@@ -30,21 +30,3 @@ export const apiSlice = createApi({
 });
 
 export const { useFetchDataQuery } = apiSlice
-
-
-/**
- * export const apiSlice = createApi({
-  reducerPath: 'fetchScoreData',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://test-task-j.herokuapp.com/data',
-  }),
-  endpoints: (build) => ({
-    fetchData: build.query<queryParams, { page: number, size: number }>({
-      query: ({ page = 1, size = 10 }) => ({
-        url: `?page=${page}&size=${size}`
-      }),
-      transformResponse: (response: { data: queryParams }, meta, arg) => response.data
-    }),
-  }),
-});
- */

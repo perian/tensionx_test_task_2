@@ -1,4 +1,4 @@
-@use "../../variables.scss" as *;
+@use '../../variables.scss' as *;
 
 .pagination {
   display: flex;
@@ -41,14 +41,26 @@
     &--left {
       background-image: url(../../../public/img/arrow-left.svg);
       background-position-x: 5px;
+
+      &:disabled {
+        background-image: url(../../../public/img/arrow-left-disabled.svg);
+      }
     }
 
     &--right {
       background-image: url(../../../public/img/arrow-right.svg);
+
+      &:disabled {
+        background-image: url(../../../public/img/arrow-right-disabled.svg);
+      }
     }
 
     &:hover {
       background-color: $bg;
+    }
+    
+    &:hover:disabled {
+      background-color: transparent;
     }
 
     &:focus {
@@ -58,5 +70,6 @@
     &:active {
       background-color: $bg-table-stroke-mid;
     }
+
   }
 }

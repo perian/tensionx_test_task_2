@@ -14,11 +14,8 @@ export const dataSlice = createSlice({
     sortData: (state, action) => {
       state.sortedData = action.payload;
     },
-    nextPage: (state) => {
-      state.page++;
-    },
-    previousPage: (state) => {
-      state.page--;
+    setPage: (state, action) => {
+      state.page = action.payload;
     },
     setSize: (state, action) => {
       state.size = action.payload;
@@ -26,5 +23,5 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { sortData, nextPage, previousPage, setSize } = dataSlice.actions;
+export const { sortData, setSize, setPage } = dataSlice.actions;
 export default dataSlice.reducer;

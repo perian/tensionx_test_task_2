@@ -1,14 +1,26 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useFetchDataQuery } from '../services/api';
-import { previousPage, nextPage, setSize } from '../store/dataSlice';
+import { setSize, setPage } from '../store/dataSlice';
 import './pagination.scss';
 
 function Pagination() {
   const dispatch = useAppDispatch();
   const { page, size } = useAppSelector((state) => state.data);
   const { data: scores } = useFetchDataQuery({ page, size });
-  const [pageItemsCounter, setPageItemsCounter] = useState(1);
+  const [minViewedItems, setMinViewedItems] = useState(1);
+
+  let lastPage = Math.ceil(scores!.totalCount / size);
+
+  const setMaxViewedItems = () => {
+    const maxViewedItems = size * page;
+    const totalCount = scores!.totalCount;
+
+    if (maxViewedItems < totalCount) {
+      return maxViewedItems;
+    }
+    return totalCount;
+  };
 
   return (
     <div className="pagination">
@@ -21,6 +33,7 @@ function Pagination() {
           aria-readonly
           value={size}
           onChange={(evt) => dispatch(setSize(parseInt(evt.target.value)))}
+          disabled={page !== 1 && page === lastPage}
         >
           <option value="10">10</option>
           <option value="20">20</option>
@@ -28,7 +41,7 @@ function Pagination() {
       </div>
 
       <p className="pagination__text">
-        {pageItemsCounter}-{size * page} of {scores?.totalCount}
+        {minViewedItems}-{setMaxViewedItems()} of {scores?.totalCount}
       </p>
 
       <div className="pagination__pages-controls">
@@ -36,8 +49,8 @@ function Pagination() {
           className="pagination__arrow  pagination__arrow--left"
           type="button"
           onClick={() => {
-            dispatch(previousPage());
-            setPageItemsCounter((prev) => prev - size);
+            dispatch(setPage(page - 1));
+            setMinViewedItems((prev) => prev - size);
           }}
           disabled={page === 1}
         ></button>
@@ -45,10 +58,10 @@ function Pagination() {
           className="pagination__arrow  pagination__arrow--right"
           type="button"
           onClick={() => {
-            dispatch(nextPage());
-            setPageItemsCounter((prev) => prev + size);
+            dispatch(setPage(page + 1));
+            setMinViewedItems((prev) => prev + size);
           }}
-          disabled={page === scores?.totalPages}
+          disabled={page === lastPage}
         ></button>
       </div>
     </div>
