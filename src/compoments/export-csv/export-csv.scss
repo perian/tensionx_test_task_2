@@ -1,4 +1,4 @@
-@use '../../variables.scss' as *;
+@use "../../variables.scss" as *;
 
 .export-field__wrap {
   min-width: 25%;
@@ -16,10 +16,11 @@
   line-height: 17px;
   color: $font-new-gray;
   text-transform: uppercase;
+  text-decoration: none;
 
   background-color: transparent;
   background-image: url(../../../public/img/export-arrow.svg);
   background-repeat: no-repeat;
-  background-position: 3px 2px;
+  background-position: 3px;
   border: none;
 }

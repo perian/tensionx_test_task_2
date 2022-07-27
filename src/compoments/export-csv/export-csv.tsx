@@ -1,5 +1,9 @@
 import Scores from '../types/consts';
 import './export-csv.scss';
+const {
+  Parser,
+  transforms: { flatten },
+} = require('json2csv');
 
 type ExportCSVProps = {
   getCheckedStudentsData: () => Scores;
@@ -7,42 +11,41 @@ type ExportCSVProps = {
 
 function ExportCSV({ getCheckedStudentsData }: ExportCSVProps) {
   const downloadCSV = () => {
-    function pivot(arr: any) {
-      const map = new Map();
+    const students = getCheckedStudentsData();
+    const fields = [
+      'name',
+      'id',
+      'class',
+      'parents.0',
+      'parents.1',
+      'score',
+      'speed',
+      'tests.0.label',
+      'tests.0.score',
+      'tests.0.speed',
+      'tests.0.total',
+      'tests.0.expSpeed',
+      'tests.0.concept',
+      'tests.0.date',
+      'tests.0.absent',
+      'tests.1.label',
+      'tests.1.score',
+      'tests.1.speed',
+      'tests.1.total',
+      'tests.1.expSpeed',
+      'tests.1.concept',
+      'tests.1.date',
+      'tests.1.absent',
+    ];
 
-      function setValue(a: object[], path: string[], val: any) {
-        if (Object(val) !== val) {
-          // primitive value
-          const pathStr = path.join('.');
-          const i = (map.has(pathStr) ? map : map.set(pathStr, map.size)).get(
-            pathStr
-          );
-          a[i] = val;
-        } else {
-          for (let key in val) {
-            setValue(a, key == '0' ? path : path.concat(key), val[key]);
-          }
-        }
-        return a;
-      }
+    const transforms = [flatten({ objects: true, arrays: true })];
+    const json2csvParser = new Parser({ fields, transforms });
+    const csv = json2csvParser.parse(students);
 
-      const result = arr.map((obj: any) => setValue([], [], obj));
-      return [[...map.keys()], ...result];
-    }
+    const elem = document.querySelector(
+      '.export-field__button'
+    ) as HTMLAnchorElement;
 
-    function toCsv(arr: any[]) {
-      return arr
-        .map((row: any[]) =>
-          row
-            .map((val: number) => (isNaN(val) ? JSON.stringify(val) : +val))
-            .join(',')
-        )
-        .join('\n');
-    }
-
-    const csv = toCsv(pivot(getCheckedStudentsData()));
-
-    const elem = document.querySelector('.export-field__button') as HTMLAnchorElement;
     elem!.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
   };
 
