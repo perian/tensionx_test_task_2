@@ -35,9 +35,10 @@
   padding-right: 0;
   padding-bottom: 14px;
   padding-left: 0;
-  gap:15px;
 
   text-transform: uppercase;
+
+  gap: 15px;
 
   &__inner-wrap {
     display: flex;
@@ -209,4 +210,23 @@
   &--red {
     color: $font-red;
   }
+}
+
+.checkbox-input:checked + .checkbox-label {
+  background-color: $bg-dark;
+  background-image: url(../../../public/img/checkbox-arrow.svg);
+  background-position: center;
+  border-color: $bg-dark;
+}
+
+.checkbox-label {
+  position: relative;
+
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: auto;
+
+  border: 2px solid $bg-gray-mid;
+  border-radius: 2px;
 }

@@ -26,9 +26,8 @@ function MainScreen() {
   }
 
   const collectCheckedStudents = () => {
-    const checkBoxes = document.querySelectorAll(
-      '.score-table__td-checkbox-input:checked'
-    );
+    const scoreTable = document.querySelector('.score-table__body');
+    const checkBoxes = scoreTable!.querySelectorAll('.checkbox-input');
 
     let checkedStudentsIds = [];
     for (let checkBox of checkBoxes) {
@@ -48,7 +47,7 @@ function MainScreen() {
         }
       }
     });
-    console.log(checkedStudentsData)
+
     return checkedStudentsData;
   };
 
@@ -189,7 +188,7 @@ function MainScreen() {
           <ExportCSV getCheckedStudentsData={getCheckedStudentsData} />
         </section>
 
-        <MainTable scores={scores.data}/>
+        <MainTable scores={scores.data} />
       </main>
     </div>
   );

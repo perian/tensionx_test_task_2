@@ -28,6 +28,10 @@
     gap: 24px;
     grid-template-columns: 16px 1fr 96px 40px 100px 112px 2fr 104px;
 
+    & p {
+      margin: 0;
+    }
+
     & th {
       font-weight: 400;
       color: $font-gray-mid;

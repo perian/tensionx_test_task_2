@@ -31,24 +31,25 @@ function MainTableRow({ student }: MainTableRowProps) {
       <div className="score-table__tr" onClick={closeInnerTable}>
         <div className="score-table__td-checkbox">
           <input
-            className="score-table__td-checkbox-input"
+            className="checkbox-input  visually-hidden"
             id={`${id}`}
             name={`student-{name}`}
             type="checkbox"
           />
+          <label className="checkbox-label" htmlFor={`${id}`}></label>
         </div>
-        <div className="score-table__td-name">{name}</div>
-        <div className="score-table__td-id">{id}</div>
-        <div className="score-table__td-class">{group}</div>
-        <div className={`score-table__td-av-score ${scoreTextColor()}`}>
+        <p className="score-table__td-name">{name}</p>
+        <p className="score-table__td-id">{id}</p>
+        <p className="score-table__td-class">{group}</p>
+        <p className={`score-table__td-av-score ${scoreTextColor()}`}>
           {score}
-        </div>
-        <div
+        </p>
+        <p
           className={`score-table__td-av-speed ${averageSpeedTextColor(speed)}`}
         >
           {speed}
-        </div>
-        <div className="score-table__td-av-parents">{parents.join(', ')}</div>
+        </p>
+        <p className="score-table__td-av-parents">{parents.join(', ')}</p>
         <div className="score-table__td-actions">
           <button
             className="score-table__button  score-table__button--create"

@@ -1,4 +1,4 @@
-@use '../../variables.scss' as *;
+@use "../../variables.scss" as *;
 
 .results {
   display: flex;
@@ -117,7 +117,7 @@
     padding-left: 20px;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 3px;
       left: 0;
@@ -165,24 +165,28 @@
 
   &__average {
     display: flex;
-    gap: 12px;
-    text-transform: uppercase;
     align-items: center;
-    font-weight: 700;
     padding-left: 34px;
+
+    font-weight: 700;
+    text-transform: uppercase;
+
+    gap: 12px;
 
     &-title {
       width: 300px;
     }
 
     &-score {
-      color: $font-blue;
       width: 78px;
-    }
-    
-    &-speed {
+
       color: $font-blue;
+    }
+
+    &-speed {
       width: 87px;
+
+      color: $font-blue;
     }
   }
 }
@@ -240,28 +244,5 @@
 
   &__td-test-label {
     padding-left: 7px;
-  }
-
-  &__td-checkbox-input:checked + &__td-checkbox-label {
-    background-color: $bg-dark;
-    background-image: url(../../../public/img/checkbox-arrow.svg);
-    background-position: center;
-    border-color: $bg-dark;
-  }
-
-  &__td-checkbox-label {
-    position: relative;
-    display: block;
-    margin: auto;
-    width: 15px;
-    height: 15px;
-
-    border: 2px solid $bg-gray-mid;
-    border-radius: 2px;
-  }
-
-  &__checkbox {
-    display: none;
-    margin: 0 auto;
   }
 }

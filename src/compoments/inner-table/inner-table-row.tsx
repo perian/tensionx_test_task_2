@@ -42,14 +42,14 @@ function InnerTableRow({ test, index }: InnerTableProps) {
       <p className="results-table__td-date">{date}</p>
       <div className="results-table__td-absent">
         <input
-          className="results-table__td-checkbox-input  visually-hidden"
+          className="checkbox-input  visually-hidden"
           type="checkbox"
           id={`absent-checkbox-${index}`}
           onChange={() => setIsAbsent((prev) => !prev)}
           checked={isAbsent}
-        ></input>
+        />
         <label
-          className="results-table__td-checkbox-label"
+          className="checkbox-label"
           htmlFor={`absent-checkbox-${index}`}
         ></label>
       </div>
